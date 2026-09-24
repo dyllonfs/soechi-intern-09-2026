@@ -11,3 +11,10 @@ def is_valid_parentheses(s):
             stack.append(char)
 
     return not stack
+# Test Case 1
+print(is_valid_parentheses("(a[b]{c})"))
+# Expected: True
+
+# Test Case 2
+print(is_valid_parentheses("([)]"))
+# Expected: False

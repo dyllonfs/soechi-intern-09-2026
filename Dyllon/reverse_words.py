@@ -9,3 +9,11 @@ def split_input(Input):
             result += " "
 
     return result
+
+# Test Case 1
+print(split_input("  the ship   sails at dawn "))
+# Expected: dawn at sails ship the
+
+# Test Case 2
+print(split_input("hello world"))
+# Expected: world hello

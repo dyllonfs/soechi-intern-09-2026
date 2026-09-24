@@ -2,18 +2,22 @@ def top_words(text, n):
     import re
     from collections import Counter
 
-    # Normalize the text to lowercase and remove punctuation
     text = text.lower()
     text = re.sub(r'[.,!?;:]', '', text)
 
-    # Split the text into words
     words = text.split()
 
-    # Count the frequency of each word
     word_counts = Counter(words)
 
-    # Get the n most common words, sorted by count and then alphabetically
     most_common = word_counts.most_common()
     most_common.sort(key=lambda x: (-x[1], x[0]))
 
     return most_common[:n]
+
+# Test Case 1
+print(top_words("The cat and the hat. The cat sat!", 2))
+# Expected: [('the', 3), ('cat', 2)]
+
+# Test Case 2
+print(top_words("Apple apple banana, banana orange!", 2))
+# Expected: [('apple', 2), ('banana', 2)]
