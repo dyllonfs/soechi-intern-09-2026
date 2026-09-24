@@ -51,8 +51,7 @@
 
 **1.6** Which Git command **creates a new branch and switches to it**?
 
-- a) `git branch -d feature`
-not sure, assumption: a) `git branch -d feature`
+ c) `git checkout -b feature`
 
 **1.7** Which of the following is **NOT** one of the core principles of Object-Oriented Programming?
 
@@ -64,7 +63,7 @@ not sure, assumption: a) `git branch -d feature`
 
 **1.9** What is the **average** time complexity of looking up a key in a hash map / dictionary?
 
-- b) O(log n)
+- a) O(log 1)
 
 **1.10** Which of the following is **valid JSON**?
 
@@ -83,10 +82,10 @@ a process is a program that is being run, while thread is a single part of a pro
 Example of this is game. A game is a wholesome of process while inside the process can involve several threads that do different things like graphics, music, etc. 
 
 **2.2** Compare **SQL (relational)** and **NoSQL** databases. Give one situation where you would choose each.
-SQL database is used for storing data and keeping them by pairs of key and value. With NoSQL database, the way to organize and access the data will be different. 
+SQL databases are relational databases that store structured data in tables with rows and columns, and they use relationships between tables. NoSQL databases use models such as documents, key-value pairs, graphs or wide columns and are often more flexible with data structure. I would use SQL for something like banking data where relationships and consistency are important, and NoSQL for something like a large-scale application storing flexible user documents.
 
 **2.3** What is an **API**? What makes an API "RESTful"? Name at least two characteristics.
-API is Application Programming Interface which is a set of protocol for connecting two or more different software systems to exchange data or communicate. 
+An API (Application Programming Interface) is an interface that allows different software systems to communicate and exchange data. A RESTful API is an API that follows REST principles, commonly using HTTP methods such as GET, POST, PUT/PATCH and DELETE. Resources are usually identified using URLs, and requests are generally stateless.
 
 **2.4** Describe, at a high level, what happens when you type `https://www.example.com` into a browser and press Enter.
 the browser will read the address and uses DNS to search the server and it will also create a secure HTTPS connection on that server. It will send a request to the page and continued with the server that sends back a response in files and the browser will read the files and displays them on the page.
@@ -96,11 +95,12 @@ unit tests is done too check whether the code runs as expected or there are erro
 unit tests considered well done if the result stays the same with the same input.
 
 **2.6** What is a **merge conflict** in Git, why does it happen, and how do you resolve one?
-i lack the understanding of Git
+A merge conflict occurs when two branches modify the same part of a file and Git cannot automatically determine which change to keep. I would inspect the conflicting section, choose or combine the correct changes, remove the conflict markers, then add and commit the resolved file.
 
 **2.7** A user reports a bug that you **cannot reproduce** on your machine. Describe the steps you would take to investigate.
 
 I would first ask the user what they are expecting for the result and what is produced instead. I will try to fix it by asking the version of the machine, and other details, and do the fixing accordingly.
+
 ---
 
 ## Part 3 — Code Reading & Debugging (20 pts)
@@ -140,7 +140,6 @@ a) What is printed on each line?
 ["a"]
 ["a", "b"]
 b) Is this likely the intended behavior? If not, how would you fix it?
-
 no, that is not the intended behaviour of the function, I would fix it by having None as the default content of "bucket" so it will not print the content before.
 def add_item(item, bucket=None):
     if bucket is None:
@@ -156,10 +155,11 @@ for (var i = 0; i < 3; i++) {
 ```
 
 a) What is logged to the console?
-not sure
+3, 3, 3
 b) Change **one word** so that it logs `0 1 2`. Explain why it works.
+Change var to let.
+let creates a separate block-scoped i for each iteration of the loop. Therefore, when each delayed function runs, it remembers its corresponding value: 0, 1, and 2.
 
-not sure
 ### 3.4 — Find the bug
 
 ```python
@@ -190,7 +190,14 @@ departments(id, name)
 
 Write a query that returns **each department's name and average salary**, but **only for departments with more than 3 employees**, sorted from **highest to lowest** average salary.
 
-I lack the understanding of SQL
+SELECT d.name, AVG(e.salary) AS average_salary
+FROM departments d
+JOIN employees e
+    ON d.id = e.dept_id
+GROUP BY d.id, d.name
+HAVING COUNT(e.id) > 3
+ORDER BY average_salary DESC;
+
 ---
 
 ## Part 4 — Live Coding Exercises (39 pts)
@@ -253,6 +260,7 @@ Write a function `top_words(text, n)` that returns the `n` most frequent words i
 text = "The cat and the hat. The cat sat!"
 top_words(text, 2)  ->  [("the", 3), ("cat", 2)]
 ```
+
 def top_words(text, n):
     import re
     from collections import Counter
