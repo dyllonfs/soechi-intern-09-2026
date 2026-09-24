@@ -68,8 +68,6 @@
 **1.10** Which of the following is **valid JSON**?
 
 - c) `{"name": "Budi", "age": 21}`
-i do not understand JSON
-not sure, c) `{"name": "Budi", "age": 21}`
 
 ---
 
