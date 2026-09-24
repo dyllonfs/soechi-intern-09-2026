@@ -1,4 +1,11 @@
-def split_input (Input):
-    split_input = Input.split()
-    split_input = split_input[::-1]
-    return " ".join(split_input)
+def split_input(Input):
+    words = Input.split()
+    result = ""
+
+    for i in range(len(words) - 1, -1, -1):
+        result += words[i]
+
+        if i != 0:
+            result += " "
+
+    return result
